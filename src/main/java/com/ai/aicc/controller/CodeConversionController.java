@@ -154,6 +154,26 @@ public class CodeConversionController {
                                                       "targetLanguage": "Python"
                                                     }
                                                     """
+                                    ),
+                                    @ExampleObject(
+                                            name = "C# to Java",
+                                            value = """
+                                                    {
+                                                      "sourceCode": "public class Calculator {\\n    public int Add(int a, int b) {\\n        return a + b;\\n    }\\n}",
+                                                      "sourceLanguage": "C#",
+                                                      "targetLanguage": "Java"
+                                                    }
+                                                    """
+                                    ),
+                                    @ExampleObject(
+                                            name = "Java to C#",
+                                            value = """
+                                                    {
+                                                      "sourceCode": "public class User {\\n    private String name;\\n    public String getName() { return name; }\\n}",
+                                                      "sourceLanguage": "Java",
+                                                      "targetLanguage": "C#"
+                                                    }
+                                                    """
                                     )
                             }
                     )

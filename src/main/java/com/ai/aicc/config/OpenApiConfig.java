@@ -90,6 +90,15 @@ public class OpenApiConfig {
                                 - **SQL ↔ Java** - Convert SQL queries to Java and vice versa
                                 - **Java ↔ Python** - Convert Java code to Python and vice versa
                                 - **SQL ↔ Python** - Convert SQL queries to Python and vice versa
+                                - **.NET (C#) ↔ Java** - Convert C# code to Java and vice versa
+                                - **.NET (C#) ↔ Python** - Convert C# code to Python and vice versa
+                                - **.NET (C#) ↔ SQL** - Convert C# data access to SQL and vice versa
+
+                                ### Supported Languages:
+                                - **Java** - Convert to/from Java code
+                                - **Python** - Convert to/from Python code
+                                - **SQL** - Convert to/from SQL queries
+                                - **.NET (C#)** - Convert to/from C# code
 
                                 ### How to Use:
                                 1. Select your source and target languages

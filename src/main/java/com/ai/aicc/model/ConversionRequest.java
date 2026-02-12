@@ -23,14 +23,14 @@ public class ConversionRequest {
     @Schema(
             description = "The programming language of the source code",
             example = "SQL",
-            allowableValues = {"Java", "Python", "SQL"}
+            allowableValues = {"Java", "Python", "SQL", "C#"}
     )
     private String sourceLanguage;
 
     @Schema(
             description = "The target programming language to convert to",
             example = "Java",
-            allowableValues = {"Java", "Python", "SQL"}
+            allowableValues = {"Java", "Python", "SQL", "C#"}
     )
     private String targetLanguage;
 

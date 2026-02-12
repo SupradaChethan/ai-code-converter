@@ -59,7 +59,7 @@ AI Code Converter is a sophisticated Spring Boot application that leverages Azur
 ## ✨ Features
 
 ### Core Functionality
-- **Multi-Language Support**: Convert between Java, Python, and SQL
+- **Multi-Language Support**: Convert between Java, Python, SQL, and C# (.NET)
 - **Bidirectional Conversion**: All language pairs work in both directions
 - **Intelligent Translation**: Preserves logic, handles idioms, respects conventions
 - **Syntax Validation**: Returns syntactically correct, executable code
@@ -446,11 +446,12 @@ http://localhost:8080/ai-code-converter/v3/api-docs
 
 ### Language Matrix
 
-| From ↓ / To → | Java | Python | SQL |
-|---------------|------|--------|-----|
-| **Java**      | —    | ✅     | ✅  |
-| **Python**    | ✅   | —      | ✅  |
-| **SQL**       | ✅   | ✅     | —   |
+| From ↓ / To → | Java | Python | SQL | C# (.NET) |
+|---------------|------|--------|-----|-----------|
+| **Java**      | —    | ✅     | ✅  | ✅        |
+| **Python**    | ✅   | —      | ✅  | ✅        |
+| **SQL**       | ✅   | ✅     | —   | ✅        |
+| **C# (.NET)** | ✅   | ✅     | ✅  | —         |
 
 ### Conversion Examples
 
@@ -496,6 +497,122 @@ public List<Integer> filterEvenNumbers(List<Integer> numbers) {
     return numbers.stream()
                   .filter(n -> n % 2 == 0)
                   .collect(Collectors.toList());
+}
+```
+
+#### C# → Java
+**Input:**
+```csharp
+public class User
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public bool IsAdult()
+    {
+        return Age >= 18;
+    }
+}
+```
+**Output:**
+```java
+public class User {
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public boolean isAdult() {
+        return age >= 18;
+    }
+}
+```
+
+#### Java → C#
+**Input:**
+```java
+public class Product {
+    private String name;
+    private double price;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
+```
+**Output:**
+```csharp
+public class Product
+{
+    public string Name { get; }
+    public double Price { get; }
+
+    public Product(string name, double price)
+    {
+        Name = name;
+        Price = price;
+    }
+}
+```
+
+#### Python → C#
+**Input:**
+```python
+class DataProcessor:
+    def __init__(self, data):
+        self.data = data
+
+    def filter_positive(self):
+        return [x for x in self.data if x > 0]
+
+    def calculate_sum(self):
+        return sum(self.data)
+```
+**Output:**
+```csharp
+using System.Linq;
+
+public class DataProcessor
+{
+    private List<int> data;
+
+    public DataProcessor(List<int> data)
+    {
+        this.data = data;
+    }
+
+    public List<int> FilterPositive()
+    {
+        return data.Where(x => x > 0).ToList();
+    }
+
+    public int CalculateSum()
+    {
+        return data.Sum();
+    }
 }
 ```
 

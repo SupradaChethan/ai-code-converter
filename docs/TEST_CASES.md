@@ -358,6 +358,206 @@ Should generate Python code with try-except blocks.
 
 ---
 
+## Test Case 13: C# to Java - Class with Properties
+
+**Source Language:** C#
+**Target Language:** Java
+**Description:** Convert C# class with properties to Java
+
+### Input (C#):
+```csharp
+public class Product
+{
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public int Stock { get; set; }
+
+    public bool IsAvailable()
+    {
+        return Stock > 0;
+    }
+
+    public decimal GetTotalValue()
+    {
+        return Price * Stock;
+    }
+}
+```
+
+### Expected Output (Java):
+Should generate Java class with private fields and getter/setter methods.
+
+### API Test:
+```bash
+curl -X POST http://localhost:8080/ai-code-converter/api/convert \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sourceCode": "public class Product\n{\n    public string Name { get; set; }\n    public decimal Price { get; set; }\n    public int Stock { get; set; }\n\n    public bool IsAvailable()\n    {\n        return Stock > 0;\n    }\n\n    public decimal GetTotalValue()\n    {\n        return Price * Stock;\n    }\n}",
+    "sourceLanguage": "C#",
+    "targetLanguage": "Java"
+  }'
+```
+
+---
+
+## Test Case 14: Java to C# - Interface Implementation
+
+**Source Language:** Java
+**Target Language:** C#
+**Description:** Convert Java interface and implementation to C#
+
+### Input (Java):
+```java
+public interface IRepository<T> {
+    T findById(Long id);
+    List<T> findAll();
+    void save(T entity);
+    void delete(Long id);
+}
+
+public class UserRepository implements IRepository<User> {
+    @Override
+    public User findById(Long id) {
+        // Implementation
+        return null;
+    }
+
+    @Override
+    public List<User> findAll() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public void save(User entity) {
+        // Implementation
+    }
+
+    @Override
+    public void delete(Long id) {
+        // Implementation
+    }
+}
+```
+
+### Expected Output (C#):
+Should generate C# interface and class implementation with proper conventions.
+
+---
+
+## Test Case 15: Python to C# - List Comprehensions to LINQ
+
+**Source Language:** Python
+**Target Language:** C#
+**Description:** Convert Python list comprehensions to C# LINQ
+
+### Input (Python):
+```python
+def process_users(users):
+    # Filter adult users
+    adults = [u for u in users if u.age >= 18]
+
+    # Get user names
+    names = [u.name for u in adults]
+
+    # Calculate average age
+    avg_age = sum(u.age for u in adults) / len(adults) if adults else 0
+
+    return {
+        'adults': adults,
+        'names': names,
+        'average_age': avg_age
+    }
+```
+
+### Expected Output (C#):
+Should generate C# code using LINQ methods (Where, Select, Average).
+
+---
+
+## Test Case 16: C# to Python - LINQ to List Comprehensions
+
+**Source Language:** C#
+**Target Language:** Python
+**Description:** Convert C# LINQ queries to Python list comprehensions
+
+### Input (C#):
+```csharp
+public class OrderService
+{
+    public List<Order> GetLargeOrders(List<Order> orders)
+    {
+        return orders
+            .Where(o => o.Total > 1000)
+            .OrderByDescending(o => o.Total)
+            .Take(10)
+            .ToList();
+    }
+
+    public decimal GetTotalRevenue(List<Order> orders)
+    {
+        return orders
+            .Where(o => o.Status == "Completed")
+            .Sum(o => o.Total);
+    }
+}
+```
+
+### Expected Output (Python):
+Should generate Python code with list comprehensions and built-in functions.
+
+---
+
+## Test Case 17: C# to SQL - Entity to Table
+
+**Source Language:** C#
+**Target Language:** SQL
+**Description:** Convert C# entity class to SQL table definition
+
+### Input (C#):
+```csharp
+public class Employee
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public DateTime HireDate { get; set; }
+    public decimal Salary { get; set; }
+    public int? DepartmentId { get; set; }
+}
+```
+
+### Expected Output (SQL):
+Should generate SQL CREATE TABLE statement.
+
+---
+
+## Test Case 18: SQL to C# - Query to Entity Framework
+
+**Source Language:** SQL
+**Target Language:** C#
+**Description:** Convert SQL query to C# Entity Framework LINQ
+
+### Input (SQL):
+```sql
+SELECT
+    e.FirstName,
+    e.LastName,
+    e.Email,
+    d.DepartmentName,
+    e.Salary
+FROM Employees e
+INNER JOIN Departments d ON e.DepartmentId = d.Id
+WHERE e.Salary > 50000
+    AND d.DepartmentName = 'Engineering'
+ORDER BY e.Salary DESC
+```
+
+### Expected Output (C#):
+Should generate C# Entity Framework LINQ query.
+
+---
+
 ## Quick Test Commands
 
 ### Test all conversions quickly:
@@ -390,10 +590,32 @@ curl -X POST http://localhost:8080/ai-code-converter/api/convert \
   -d '{"sourceCode": "users = [u for u in all_users if u.age > 18]", "sourceLanguage": "Python", "targetLanguage": "SQL"}'
 ```
 
+**C# → Java:**
+```bash
+curl -X POST http://localhost:8080/ai-code-converter/api/convert \
+  -H "Content-Type: application/json" \
+  -d '{"sourceCode": "public class Product { public string Name { get; set; } }", "sourceLanguage": "C#", "targetLanguage": "Java"}'
+```
+
+**Java → C#:**
+```bash
+curl -X POST http://localhost:8080/ai-code-converter/api/convert \
+  -H "Content-Type: application/json" \
+  -d '{"sourceCode": "public class User { private String name; public String getName() { return name; } }", "sourceLanguage": "Java", "targetLanguage": "C#"}'
+```
+
+**Python → C#:**
+```bash
+curl -X POST http://localhost:8080/ai-code-converter/api/convert \
+  -H "Content-Type: application/json" \
+  -d '{"sourceCode": "def calculate_total(items):\n    return sum(item.price for item in items)", "sourceLanguage": "Python", "targetLanguage": "C#"}'
+```
+
 ---
 
 ## Testing Checklist
 
+### Core Language Tests
 - [ ] Test Case 1: SQL to Java - Simple SELECT
 - [ ] Test Case 2: SQL to Java - INSERT Statement
 - [ ] Test Case 3: Java to SQL - Extract Query
@@ -406,6 +628,14 @@ curl -X POST http://localhost:8080/ai-code-converter/api/convert \
 - [ ] Test Case 10: Error Handling - Empty Input
 - [ ] Test Case 11: Python to Java - Dictionary Operations
 - [ ] Test Case 12: Java to Python - Exception Handling
+
+### .NET (C#) Tests
+- [ ] Test Case 13: C# to Java - Class with Properties
+- [ ] Test Case 14: Java to C# - Interface Implementation
+- [ ] Test Case 15: Python to C# - List Comprehensions to LINQ
+- [ ] Test Case 16: C# to Python - LINQ to List Comprehensions
+- [ ] Test Case 17: C# to SQL - Entity to Table
+- [ ] Test Case 18: SQL to C# - Query to Entity Framework
 
 ---
 
